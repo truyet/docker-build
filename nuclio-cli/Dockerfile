@@ -6,7 +6,7 @@ ENV AWSCLI_VERSION=${awscli_version:-1.15.7}
 RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-18.09.0.tgz -O docker.tgz && tar --extract --file docker.tgz --strip-components 1 --directory /usr/local/bin/ \
     && rm docker.tgz
 
-RUN wget https://github.com/nuclio/nuclio/releases/download/0.7.2/nuctl-0.7.2-linux-amd64 -O /usr/local/bin/nuctl \
+RUN wget https://github.com/nuclio/nuclio/releases/download/1.1.1/nuctl-1.1.1-linux-amd64 -O /usr/local/bin/nuctl \
     && chmod +x /usr/local/bin/nuctl
 
 RUN wget -O kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64 \
