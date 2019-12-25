@@ -5,16 +5,16 @@ ARG terraform_version
 ARG kubectl_version
 ARG helm_version
 ARG istio_version
-ENV AWSCLI_VERSION=${awscli_version:-1.15.7}
-ENV TERRAFORM_VERSION=${terraform_version:-0.11.7}
+ENV AWSCLI_VERSION=${awscli_version:-1.16.304}
+ENV TERRAFORM_VERSION=${terraform_version:-0.12.18}
 # ENV TERRAFORM_SHA256SUM=b786c0cf936e24145fad632efd0fe48c831558cc9e43c071fffd93f35e3150db
 ENV TOOLSET_NAME="kops-tools"
 ENV CWD="/${TOOLSET_NAME}"
 ENV UNPRIVILEDGED_USER="kops"
-ENV KUBECTL_VERSION=${kubectl_version:-v1.11.0}
-ENV HELM_VERSION=${helm_version:-v2.10.0}
+ENV KUBECTL_VERSION=${kubectl_version:-v1.17.0}
+ENV HELM_VERSION=${helm_version:-v2.14.0}
 ENV YAML_SHASUM=28308a7231905030a62f20c92d41513e570d24f1984c1864198cbc4e039d3bec
-ARG ISTIOCTL_VERSION=${istio_version:-1.0.2}
+ARG ISTIOCTL_VERSION=${istio_version:-1.4.2}
 # ENV KOPS_RELEASE_ID=8410205
 
 RUN apk add --update --no-cache bash ca-certificates coreutils jq git make py2-pip util-linux openssh openssl tree gettext curl
@@ -33,7 +33,7 @@ RUN wget -O kops https://github.com/kubernetes/kops/releases/download/$(curl -s 
 && chmod +x ./kops \
 && mv ./kops /usr/local/bin/
 
-RUN wget curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
+RUN wget https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 RUN wget http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz \
     && tar -xvf helm-${HELM_VERSION}-linux-amd64.tar.gz \

@@ -20,6 +20,8 @@ RUN wget https://bootstrap.pypa.io/get-pip.py -O get-pip.py && python get-pip.py
 
 RUN  pip install awscli --upgrade
 
+RUN wget https://github.com/mikefarah/yq/releases/download/2.1.2/yq_linux_amd64 -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+
 COPY modprobe.sh /usr/local/bin/modprobe
 COPY docker-entrypoint.sh /usr/local/bin/
 
